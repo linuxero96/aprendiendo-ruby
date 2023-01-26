@@ -35,6 +35,8 @@ gem "mysql2"
 
 gem "annotate"
 
+gem "devise"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
