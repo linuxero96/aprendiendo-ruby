@@ -12,7 +12,10 @@
 #
 class Task < ApplicationRecord
   belongs_to :category
-  belongs_to: owner, class:name: 'User'
+  belongs_to :owner, class_name: 'User'
+  has_many :participating_users, class_name: 'Participant'
+  has_many :participants, through: :participating_users, source: :user
 
+  validates :participating_users, presence: true
   validates_uniqueness_of :name, :description
 end

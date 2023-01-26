@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_26_214219) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_26_215748) do
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "participants", charset: "utf8", force: :cascade do |t|
+    t.integer "role"
+    t.bigint "user_id", null: false
+    t.bigint "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_participants_on_task_id"
+    t.index ["user_id"], name: "index_participants_on_user_id"
   end
 
   create_table "tasks", charset: "utf8mb4", force: :cascade do |t|
@@ -42,6 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_26_214219) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "participants", "tasks"
+  add_foreign_key "participants", "users"
   add_foreign_key "tasks", "categories"
   add_foreign_key "tasks", "users", column: "owner_id"
 end
