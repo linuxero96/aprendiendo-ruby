@@ -12,6 +12,7 @@
 #
 class Task < ApplicationRecord
   belongs_to :category
+  belongs_to: owner, class:name: 'User'
 
   validates_uniqueness_of :name, :description
 end
