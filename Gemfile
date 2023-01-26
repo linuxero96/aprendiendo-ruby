@@ -31,6 +31,7 @@ gem "hamlit"
 
 gem "simple_form"
 
+gem "mysql2"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
